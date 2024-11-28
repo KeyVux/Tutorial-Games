@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b3rkkgxf7ckml"
-path="res://.godot/imported/icon.svg-0a5d4dc0e3a3bb97758b18a2fe883bc4.ctex"
+uid="uid://bqlcbp3ltdnmn"
+path="res://.godot/imported/playerGrey_up2.png-5dada6b1bc662f569d8a0a29135c559e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Asset/icon.svg"
-dest_files=["res://.godot/imported/icon.svg-0a5d4dc0e3a3bb97758b18a2fe883bc4.ctex"]
+source_file="res://Godot Tutorial Games 2d/assets/art/playerGrey_up2.png"
+dest_files=["res://.godot/imported/playerGrey_up2.png-5dada6b1bc662f569d8a0a29135c559e.ctex"]
 
 [params]
 
@@ -32,6 +32,3 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
-svg/scale=1.0
-editor/scale_with_editor_scale=false
-editor/convert_colors_with_editor_theme=false

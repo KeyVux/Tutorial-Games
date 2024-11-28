@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://r5ttqaxnuvgk"
-path="res://.godot/imported/MaldiniBold.ttf-fd5286ec3212ae0d3532e82ab3231ddf.fontdata"
+uid="uid://djn0rso4egyic"
+path="res://.godot/imported/Xolonium-Regular.ttf-b42dd1f07f6d0aea38d7854bbdec649f.fontdata"
 
 [deps]
 
-source_file="res://Asset/MaldiniBold.ttf"
-dest_files=["res://.godot/imported/MaldiniBold.ttf-fd5286ec3212ae0d3532e82ab3231ddf.fontdata"]
+source_file="res://Godot Tutorial Games 2d/assets/fonts/Xolonium-Regular.ttf"
+dest_files=["res://.godot/imported/Xolonium-Regular.ttf-b42dd1f07f6d0aea38d7854bbdec649f.fontdata"]
 
 [params]
 

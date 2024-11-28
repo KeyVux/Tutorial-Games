@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://c3hgat348bwhg"
+path="res://.godot/imported/gameover.wav-c35f31c985f67c2196305d35b80515e5.sample"
+
+[deps]
+
+source_file="res://Godot Tutorial Games 2d/assets/art/gameover.wav"
+dest_files=["res://.godot/imported/gameover.wav-c35f31c985f67c2196305d35b80515e5.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

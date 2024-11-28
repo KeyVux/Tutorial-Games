@@ -1,14 +1,14 @@
 [gd_scene load_steps=3 format=3 uid="uid://3057kstacxcx"]
 
-[ext_resource type="Script" path="res://scipts/move__to_mouse.gd" id="1_ldl37"]
-[ext_resource type="Texture2D" uid="uid://b3wb67s7qhw8y" path="res://Asset/playerGrey_up1.png" id="2_42gy8"]
+[ext_resource type="Script" path="res://Move To Mouse/scripts/move__to_mouse.gd" id="1_5c82r"]
+[ext_resource type="Texture2D" uid="uid://b3wb67s7qhw8y" path="res://Move To Mouse/assets/playerGrey_up1.png" id="2_ru67n"]
 
 [node name="Node2D" type="Node2D"]
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
-script = ExtResource("1_ldl37")
+script = ExtResource("1_5c82r")
 
 [node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
-texture = ExtResource("2_42gy8")
+texture = ExtResource("2_ru67n")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]

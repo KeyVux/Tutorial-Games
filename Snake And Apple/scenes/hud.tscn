@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bskk40riq3eep"]
 
-[ext_resource type="FontFile" uid="uid://r5ttqaxnuvgk" path="res://Asset/MaldiniBold.ttf" id="1_efcvo"]
+[ext_resource type="FontFile" uid="uid://r5ttqaxnuvgk" path="res://Snake And Apple/assets/MaldiniBold.ttf" id="1_efcvo"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_45iu8"]
 bg_color = Color(0.3494, 0.615694, 0.90208, 1)

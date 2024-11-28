@@ -1,0 +1,60 @@
+[gd_scene load_steps=8 format=3 uid="uid://dwr07n4ccty0h"]
+
+[ext_resource type="PackedScene" uid="uid://u5d46tciacyq" path="res://Godot Tutorial Games 2d/scenes/player.tscn" id="1_kdh4r"]
+[ext_resource type="Script" path="res://Godot Tutorial Games 2d/scipts/main.gd" id="1_t4ris"]
+[ext_resource type="PackedScene" uid="uid://2ex2oxp6jv6m" path="res://Godot Tutorial Games 2d/scenes/mob.tscn" id="2_wu7fj"]
+[ext_resource type="PackedScene" uid="uid://dac5h6jp7r0k5" path="res://Godot Tutorial Games 2d/scenes/hud.tscn" id="4_o1m20"]
+[ext_resource type="AudioStream" uid="uid://by6sunslsbxo5" path="res://Godot Tutorial Games 2d/assets/art/House In a Forest Loop.ogg" id="5_ixseq"]
+[ext_resource type="AudioStream" uid="uid://c3hgat348bwhg" path="res://Godot Tutorial Games 2d/assets/art/gameover.wav" id="6_pk6j0"]
+
+[sub_resource type="Curve2D" id="Curve2D_xle0e"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -1, 0, 0, 0, 0, 0, 480, 0, 0, 0, 0, 0, 480, 720, 0, 0, 0, 0, 0, 720, 0, 0, 0, 0, -1, 0)
+}
+point_count = 5
+
+[node name="Main" type="Node"]
+script = ExtResource("1_t4ris")
+mob_scene = ExtResource("2_wu7fj")
+
+[node name="Background" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.67451, 0.662745, 0.345098, 1)
+
+[node name="Player" parent="." instance=ExtResource("1_kdh4r")]
+
+[node name="MobTimer" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="ScoreTimer" type="Timer" parent="."]
+
+[node name="StartTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="StartPosition" type="Marker2D" parent="."]
+position = Vector2(240, 450)
+
+[node name="MobPath" type="Path2D" parent="."]
+curve = SubResource("Curve2D_xle0e")
+
+[node name="MobSpawnLocation" type="PathFollow2D" parent="MobPath"]
+position = Vector2(-1, 0)
+
+[node name="HUD" parent="." instance=ExtResource("4_o1m20")]
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_ixseq")
+
+[node name="DeathSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_pk6j0")
+
+[connection signal="hit" from="Player" to="." method="game_over"]
+[connection signal="timeout" from="MobTimer" to="." method="_on_mob_timer_timeout"]
+[connection signal="timeout" from="ScoreTimer" to="." method="_on_score_timer_timeout"]
+[connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]
+[connection signal="start_game" from="HUD" to="." method="new_game"]
