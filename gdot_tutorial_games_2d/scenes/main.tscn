@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://dwr07n4ccty0h"]
+[gd_scene load_steps=8 format=3 uid="uid://dwr07n4ccty0h"]
 
-[ext_resource type="Script" path="res://scipts/main.gd" id="1_8i5pk"]
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_8i5pk"]
 [ext_resource type="PackedScene" uid="uid://u5d46tciacyq" path="res://scenes/player.tscn" id="1_kdh4r"]
+[ext_resource type="PackedScene" uid="uid://2ex2oxp6jv6m" path="res://scenes/mob.tscn" id="2_pul3t"]
 [ext_resource type="PackedScene" uid="uid://dac5h6jp7r0k5" path="res://scenes/hud.tscn" id="4_o1m20"]
 [ext_resource type="AudioStream" uid="uid://by6sunslsbxo5" path="res://assets/art/House In a Forest Loop.ogg" id="5_ixseq"]
 [ext_resource type="AudioStream" uid="uid://c3hgat348bwhg" path="res://assets/art/gameover.wav" id="6_pk6j0"]
@@ -14,6 +15,7 @@ point_count = 5
 
 [node name="Main" type="Node"]
 script = ExtResource("1_8i5pk")
+mob_scene = ExtResource("2_pul3t")
 
 [node name="Background" type="ColorRect" parent="."]
 anchors_preset = 15
@@ -55,4 +57,4 @@ stream = ExtResource("6_pk6j0")
 [connection signal="timeout" from="MobTimer" to="." method="_on_mob_timer_timeout"]
 [connection signal="timeout" from="ScoreTimer" to="." method="_on_score_timer_timeout"]
 [connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]
-[connection signal="start_game" from="HUD" to="." method="_on_hud_start_game"]
+[connection signal="start_game" from="HUD" to="." method="new_game"]
