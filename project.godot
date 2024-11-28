@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Tutorial Game"
-run/main_scene="res://Complete Game/Move To Mouse/move_to_mouse_clicked.tscn"
+run/main_scene="res://Completed Games/Move To Mouse/move_to_mouse_clicked.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://Asset/icon.svg"
 
