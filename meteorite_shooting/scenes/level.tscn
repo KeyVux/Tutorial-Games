@@ -90,6 +90,7 @@ script = null
 metadata/_edit_lock_ = true
 
 [node name="Laser" parent="Lasers" instance=ExtResource("5_el11q")]
+position = Vector2(664, 495)
 
 [node name="Player" type="Node2D" parent="."]
 position = Vector2(657, 640)
@@ -202,4 +203,4 @@ frame_progress = 0.560368
 
 [node name="UI" parent="." instance=ExtResource("9_ao6d6")]
 
-[connection signal="laser" from="Player/Player" to="." method="_on_player_laser"]
+[editable path="Player/Player"]

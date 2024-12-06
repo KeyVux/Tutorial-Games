@@ -12,5 +12,5 @@ func _process(delta: float):
 	position.y -= speed * delta
 
 func onHit(meteor: Meteorite):
-	queue_free()  # Delete the laser
+	#queue_free()  # Delete the laser
 	meteor.queue_free()  # Delete the meteor

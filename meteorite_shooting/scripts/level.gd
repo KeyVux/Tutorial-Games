@@ -3,7 +3,7 @@ extends Node2D
 
 @onready var meteorTimer = $MeteorTimer
 
-var health: int = 3
+var health: int = 300
 
 # 1. Load scenes
 var meteorScenes: PackedScene = load("res://scenes/meteorite.tscn")

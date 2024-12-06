@@ -16,7 +16,16 @@ polygon = PackedVector2Array(-8, -37, 8, -37, 11, -12, 35, 3, 40, 1, 45, -5, 47,
 [node name="LaserStartingPosition" type="Marker2D" parent="."]
 position = Vector2(0, -68)
 
-[node name="LaserCooldown" type="Timer" parent="."]
-wait_time = 0.01
+[node name="Debug Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 30.0
+offset_top = -54.0
+offset_right = 198.0
+offset_bottom = -14.0
 
-[connection signal="timeout" from="LaserCooldown" to="." method="_on_laser_cooldown_timeout"]
+[node name="Label Bullet Count" type="Label" parent="Debug Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Bullet Count: 0"
