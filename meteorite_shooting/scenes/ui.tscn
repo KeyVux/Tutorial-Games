@@ -1,0 +1,56 @@
+[gd_scene load_steps=4 format=3 uid="uid://332jc27lcusc"]
+
+[ext_resource type="FontFile" uid="uid://b1gc4kigq6ljw" path="res://assets/Bonus/kenvector_future_thin.ttf" id="1_15lu4"]
+[ext_resource type="Script" path="res://scripts/ui.gd" id="1_atbka"]
+[ext_resource type="Texture2D" uid="uid://unta85myqx4j" path="res://assets/PNG/UI/playerLife1_red.png" id="2_22pyp"]
+
+[node name="UI" type="CanvasLayer" groups=["UI"]]
+script = ExtResource("1_atbka")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -128.5
+offset_right = 128.5
+offset_bottom = 99.0
+grow_horizontal = 2
+
+[node name="Score" type="Label" parent="MarginContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_15lu4")
+theme_override_font_sizes/font_size = 87
+text = "0
+"
+horizontal_alignment = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 185.0
+grow_vertical = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 5
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer2/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_22pyp")
+stretch_mode = 2
+
+[node name="TextureRect2" type="TextureRect" parent="MarginContainer2/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_22pyp")
+stretch_mode = 2
+
+[node name="TextureRect3" type="TextureRect" parent="MarginContainer2/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_22pyp")
+stretch_mode = 2
+
+[node name="ScoreTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="ScoreTimer" to="." method="_on_score_timer_timeout"]

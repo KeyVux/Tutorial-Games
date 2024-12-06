@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://cbsflvqkge20l"]
+
+[ext_resource type="Texture2D" uid="uid://dp3vemmtlcxcr" path="res://assets/PNG/playerShip1_red.png" id="1_1pc5e"]
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_lggps"]
+
+[node name="Player" type="CharacterBody2D"]
+collision_mask = 6
+script = ExtResource("1_lggps")
+
+[node name="PlayerImage" type="Sprite2D" parent="."]
+texture = ExtResource("1_1pc5e")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-8, -37, 8, -37, 11, -12, 35, 3, 40, 1, 45, -5, 47, -5, 45, 22, 42, 17, 38, 22, 14, 27, 6, 37, -4, 37, -13, 28, -34, 24, -41, 19, -44, 25, -48, -5, -42, -1, -36, 3, -12, -12, -9, -34)
+
+[node name="LaserStartingPosition" type="Marker2D" parent="."]
+position = Vector2(0, -68)
+
+[node name="LaserCooldown" type="Timer" parent="."]
+wait_time = 0.01
+
+[connection signal="timeout" from="LaserCooldown" to="." method="_on_laser_cooldown_timeout"]

@@ -1,0 +1,73 @@
+[gd_scene load_steps=9 format=3 uid="uid://dh6f7o888gd6u"]
+
+[ext_resource type="PackedScene" uid="uid://cbsflvqkge20l" path="res://scenes/player.tscn" id="1_8nudi"]
+[ext_resource type="Script" path="res://scripts/level.gd" id="1_17dg8"]
+[ext_resource type="Texture2D" uid="uid://dtk4tw3b1cu06" path="res://assets/Backgrounds/purple.png" id="2_kan5q"]
+[ext_resource type="PackedScene" uid="uid://455oai661y28" path="res://scenes/meteorite.tscn" id="3_hyn1n"]
+[ext_resource type="PackedScene" uid="uid://da2qsnmyhn3qf" path="res://scenes/laser.tscn" id="5_el11q"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rwt77"]
+size = Vector2(40, 720)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m1b7n"]
+size = Vector2(1276, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_my6fu"]
+size = Vector2(1282, 20)
+
+[node name="Level" type="Node2D"]
+script = ExtResource("1_17dg8")
+
+[node name="BG" type="Sprite2D" parent="."]
+position = Vector2(639.75, 360.5)
+scale = Vector2(5.00195, 2.80859)
+texture = ExtResource("2_kan5q")
+
+[node name="Player" parent="." instance=ExtResource("1_8nudi")]
+position = Vector2(633, 606)
+
+[node name="Borders" type="Node2D" parent="."]
+
+[node name="BorderTop" type="StaticBody2D" parent="Borders"]
+collision_layer = 4
+
+[node name="CollisionTop" type="CollisionShape2D" parent="Borders/BorderTop"]
+position = Vector2(1287, 363)
+shape = SubResource("RectangleShape2D_rwt77")
+
+[node name="BorderRight" type="StaticBody2D" parent="Borders"]
+collision_layer = 4
+
+[node name="CollisionRight" type="CollisionShape2D" parent="Borders/BorderRight"]
+position = Vector2(637, 1)
+shape = SubResource("RectangleShape2D_m1b7n")
+
+[node name="BorderLeft" type="StaticBody2D" parent="Borders"]
+collision_layer = 4
+
+[node name="CollisionLeft" type="CollisionShape2D" parent="Borders/BorderLeft"]
+position = Vector2(-6, 362)
+shape = SubResource("RectangleShape2D_rwt77")
+
+[node name="BorderBottom" type="StaticBody2D" parent="Borders"]
+collision_layer = 4
+
+[node name="CollisionBottom" type="CollisionShape2D" parent="Borders/BorderBottom"]
+position = Vector2(639, 719)
+shape = SubResource("RectangleShape2D_my6fu")
+
+[node name="MeteorTimer" type="Timer" parent="."]
+wait_time = 0.25
+
+[node name="Meteors" type="Node2D" parent="."]
+
+[node name="Meteorite" parent="Meteors" instance=ExtResource("3_hyn1n")]
+position = Vector2(-153, -79)
+script = null
+
+[node name="Lasers" type="Node2D" parent="."]
+position = Vector2(-290, -17)
+
+[node name="Laser" parent="Lasers" instance=ExtResource("5_el11q")]
+
+[connection signal="laser" from="Player" to="." method="_on_player_laser"]
