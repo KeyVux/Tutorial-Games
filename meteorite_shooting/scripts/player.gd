@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+class_name Player
+
 @export var speed: int = 500
 
 const shoot_delay = 0.01
@@ -43,5 +45,7 @@ func spawnLaser():
 		$"Debug Control/Label Bullet Count".text = "Bullet Spawn: %d" % laserPool.size()
 		return
 	$"Debug Control/Label Bullet Count".text = "Bullet Index: %d" % laserPoolIndex
-	laserPool[laserPoolIndex].global_position = $LaserStartingPosition.global_position
+	var laser = laserPool[laserPoolIndex]
+	laser.global_position = $LaserStartingPosition.global_position
+	laser.visible = true
 	laserPoolIndex = (laserPoolIndex + 1) % LASER_POOL_MAX

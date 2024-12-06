@@ -6,6 +6,7 @@ var meteorAsset: Array[Sprite2D]
 var speed: int
 var rotationSpeed: int
 var directionX: float 
+var isHit := false
 
 signal collision
 
@@ -31,13 +32,20 @@ func _ready():
 func _process(delta: float):
 	position += Vector2(directionX,1.0) * 400 * delta
 	rotation_degrees += rotationSpeed * delta
-	
-func _on_body_entered(_body: Node2D) -> void:
-	collision.emit()
-	print("Crash")
 
-func _physics_process(_delta: float):
-	var bodies = $".".get_overlapping_areas()
-	for b in bodies:
-		if b is Laser:
-			b.onHit(self)
+func _on_area_entered(area: Area2D) -> void:
+	if !isHit && area is Laser:
+		isHit = true
+		Score.instance.addScore()
+		area.onHit(self)
+		queue_free()
+		return
+		
+
+
+
+func _on_body_entered(body: Node2D) -> void:
+	if body is Player:
+		collision.emit()
+		print("Crash!")
+		queue_free()

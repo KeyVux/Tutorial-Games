@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dh6f7o888gd6u"]
+[gd_scene load_steps=15 format=3 uid="uid://dh6f7o888gd6u"]
 
 [ext_resource type="PackedScene" uid="uid://cbsflvqkge20l" path="res://scenes/player.tscn" id="1_8nudi"]
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_17dg8"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://bxbuxfusul2h3" path="res://assets/PNG/Effects/star2.png" id="7_pdfsd"]
 [ext_resource type="Texture2D" uid="uid://bgo0bvpoeue57" path="res://assets/PNG/Effects/star3.png" id="8_xggyb"]
 [ext_resource type="PackedScene" uid="uid://332jc27lcusc" path="res://scenes/ui.tscn" id="9_ao6d6"]
+[ext_resource type="Script" path="res://scripts/score.gd" id="10_g0c5g"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rwt77"]
 size = Vector2(40, 720)
@@ -38,6 +39,9 @@ animations = [{
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_17dg8")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(672, 384)
 
 [node name="BG" type="Sprite2D" parent="."]
 position = Vector2(639.75, 360.5)
@@ -203,4 +207,8 @@ frame_progress = 0.560368
 
 [node name="UI" parent="." instance=ExtResource("9_ao6d6")]
 
+[node name="Score" parent="UI/MarginContainer" index="0"]
+script = ExtResource("10_g0c5g")
+
 [editable path="Player/Player"]
+[editable path="UI"]
