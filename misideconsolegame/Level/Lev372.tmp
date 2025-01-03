@@ -1,0 +1,52 @@
+[gd_scene load_steps=6 format=3 uid="uid://dlw4wrhv4h2xb"]
+
+[ext_resource type="PackedScene" uid="uid://dkct7mbso8ra8" path="res://Player/Player.tscn" id="1_py8ja"]
+[ext_resource type="Script" path="res://Level/level.gd" id="1_sxjfi"]
+[ext_resource type="Texture2D" uid="uid://bhxe5saugxsj4" path="res://background.svg" id="2_8pyud"]
+
+[sub_resource type="Curve2D" id="Curve2D_rgtnv"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -628, -394, 0, 0, 0, 0, 635, -399, 0, 0, 0, 0, 635, 388, 0, 0, 0, 0, -626, 378, 0, 0, 0, 0, -626, -394)
+}
+point_count = 5
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mpuep"]
+size = Vector2(1422, 920.125)
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_sxjfi")
+
+[node name="Background" type="Sprite2D" parent="."]
+texture_repeat = 2
+position = Vector2(27.9075, 25.6444)
+scale = Vector2(9.36874, 4.84516)
+texture = ExtResource("2_8pyud")
+region_enabled = true
+region_rect = Rect2(0, 0, 250, 250)
+
+[node name="Node2DPlayer" parent="." instance=ExtResource("1_py8ja")]
+speed = 150
+
+[node name="Camera2D" type="Camera2D" parent="Node2DPlayer"]
+
+[node name="Area2DCoinZone" type="Area2D" parent="Node2DPlayer"]
+collision_layer = 2
+
+[node name="Path2D" type="Path2D" parent="Node2DPlayer/Area2DCoinZone"]
+curve = SubResource("Curve2D_rgtnv")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Node2DPlayer/Area2DCoinZone/Path2D"]
+position = Vector2(-628, -394)
+rotation = -0.00395881
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2DPlayer/Area2DCoinZone"]
+shape = SubResource("RectangleShape2D_mpuep")
+debug_color = Color(3.22476e-06, 0.645431, 0.260216, 0.42)
+
+[node name="Parallax2D" type="Parallax2D" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="body_exited" from="Node2DPlayer/Area2DCoinZone" to="." method="_on_area_2d_coin_zone_body_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
