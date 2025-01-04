@@ -8,7 +8,7 @@ var direction = 1
 @onready var rayCastLeft = $RayCastLeft
 @onready var animatedSprite = $AnimatedSprite2D
 
-func _process(delta):
+func _physics_process(delta: float) -> void:
 	if rayCastRight.is_colliding():
 		direction = -1
 		animatedSprite.flip_h = true
