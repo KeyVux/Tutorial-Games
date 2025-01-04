@@ -71,6 +71,6 @@ debug_color = Color(0.0460571, 0.552141, 0.911252, 0.42)
 [node name="Timer" type="Timer" parent="."]
 autostart = true
 
-[connection signal="body_exited" from="Node2DPlayer/Area2DEnemyZone" to="." method="_on_area_2d_coin_zone_body_exited"]
+[connection signal="body_exited" from="Node2DPlayer/Area2DEnemyZone" to="." method="_on_area_2d_enemy_zone_body_exited"]
 [connection signal="body_exited" from="Node2DPlayer/Area2DCoinZone" to="." method="_on_area_2d_coin_zone_body_exited"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

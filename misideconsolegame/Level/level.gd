@@ -3,22 +3,23 @@ extends Node2D
 
 @onready var enemyScene: PackedScene = load("res://Enemy/Enemy.tscn")
 @onready var coinScene: PackedScene = load("res://Coin/Coin.tscn")
-@onready var coinSpawnLocation = $Node2DPlayer/Area2DCoinZone/CoinPath2D/PathFollow2D
-@onready var enemySpawnLocation = $Node2DPlayer/Area2DEnemyZone/CoinPath2D/PathFollow2D
+@onready var coinSpawnLocation: PathFollow2D = $Node2DPlayer/Area2DCoinZone/CoinPath2D/PathFollow2D
+@onready var enemySpawnLocation: PathFollow2D = $Node2DPlayer/Area2DEnemyZone/CoinPath2D/PathFollow2D
 
 var exitedCoin = false
 var enemyMax: = 1
-var enemyNumber: = 0
+var enemyTotal: = 0
 
 func _process(delta: float):
 
-	if enemyNumber < enemyMax:
-		spawnEnemy()
+	if enemyTotal < enemyMax:
+		spawnEntity(enemySpawnLocation, enemyScene)
+		enemyTotal += 1
 		
 	if exitedCoin == false:
-		spawnCoin()
-		print("Spawn")
-	pass
+		spawnEntity(coinSpawnLocation, coinScene)
+		exitedCoin = true
+		#print("Spawn")
 	
 	
 	
@@ -29,24 +30,19 @@ func _process(delta: float):
 	#enemy.global_position = Vector2(ranX,ranY)
 	#add_child(enemy)
 
-func spawnCoin():
-	var coin = coinScene.instantiate()
-	coinSpawnLocation.progress_ratio = randf()
-	coin.global_position = coinSpawnLocation.global_position
-	add_child(coin)	
-	exitedCoin = true
-	
-func spawnEnemy():
-	var enemy = enemyScene.instantiate()
-	enemySpawnLocation.progress_ratio = randf()
-	enemy.global_position = enemySpawnLocation.global_position
-	add_child(enemy)
-	enemyNumber += 1
+func spawnEntity(spawnLocation: PathFollow2D, Scene: PackedScene):
+	var entity = Scene.instantiate()
+	spawnLocation.progress_ratio = randf()
+	entity.global_position = spawnLocation.global_position
+	add_child(entity)
 
 func _on_area_2d_coin_zone_body_exited(body: Node2D) -> void:
 	if body.name == "Node2DCoin":
 		body.queue_free()
 		exitedCoin = false
 		
-	body.queue_free()
-	enemyNumber -= 1
+
+func _on_area_2d_enemy_zone_body_exited(body: Node2D) -> void:
+	if body.name == "Node2DEnemy":
+		body.queue_free()
+		enemyTotal -= 1
