@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://xxaoff7gwbrm"]
+[gd_scene load_steps=44 format=3 uid="uid://xxaoff7gwbrm"]
 
 [ext_resource type="Script" path="res://Character/player.gd" id="1_flj5s"]
 [ext_resource type="Texture2D" uid="uid://cf5vr3rdkcdr0" path="res://Art/Legacy-Fantasy - High Forest 2.3/Character/Idle/Idle-Sheet.png" id="1_uohqy"]
@@ -11,10 +11,11 @@
 [ext_resource type="Script" path="res://Character/LandingState.gd" id="10_e7jjg"]
 [ext_resource type="Script" path="res://Character/attack.gd" id="10_tx2hu"]
 [ext_resource type="Script" path="res://Character/StateDebugLabel.gd" id="11_xtov4"]
+[ext_resource type="Script" path="res://Character/sword.gd" id="12_q162t"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ry2ya"]
 radius = 8.0
-height = 44.0
+height = 46.0
 
 [sub_resource type="Animation" id="Animation_76cko"]
 length = 0.001
@@ -53,6 +54,18 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [4]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sword:monitoring")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_hhlbu"]
@@ -296,6 +309,18 @@ tracks/2/keys = {
 "update": 1,
 "values": [0, 1, 2, 3]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sword:monitoring")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
 
 [sub_resource type="Animation" id="Animation_h7eiu"]
 resource_name = "attack2"
@@ -336,6 +361,18 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [4, 5, 6, 7]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sword:monitoring")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0dkb2"]
@@ -422,18 +459,20 @@ states/move/position = Vector2(392, 100)
 transitions = ["Start", "move", SubResource("AnimationNodeStateMachineTransition_i4ph4"), "move", "jump_start", SubResource("AnimationNodeStateMachineTransition_2puwh"), "jump_start", "jump_end", SubResource("AnimationNodeStateMachineTransition_50dqq"), "jump_end", "move", SubResource("AnimationNodeStateMachineTransition_3ny4h"), "jump_start", "double_jump", SubResource("AnimationNodeStateMachineTransition_kd0lq"), "double_jump", "jump_end", SubResource("AnimationNodeStateMachineTransition_8aae2"), "move", "attack1", SubResource("AnimationNodeStateMachineTransition_e6vjm"), "attack1", "attack2", SubResource("AnimationNodeStateMachineTransition_p2eqk"), "attack2", "move", SubResource("AnimationNodeStateMachineTransition_flj17"), "attack1", "move", SubResource("AnimationNodeStateMachineTransition_lvxwh")]
 graph_offset = Vector2(8, -33)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y2vb2"]
+size = Vector2(20, 48)
+
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_flj5s")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 9)
-shape = SubResource("CapsuleShape2D_ry2ya")
-
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-32, -32)
+position = Vector2(1, -24)
 texture = ExtResource("1_uohqy")
-centered = false
 hframes = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -23)
+shape = SubResource("CapsuleShape2D_ry2ya")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -476,13 +515,22 @@ wait_time = 0.3
 one_shot = true
 
 [node name="StateDebugLabel" type="Label" parent="." node_paths=PackedStringArray("state_machine")]
-offset_left = -50.0
-offset_top = -58.0
-offset_right = 49.0
-offset_bottom = -32.0
+offset_left = -64.0
+offset_top = -76.0
+offset_right = 35.0
+offset_bottom = -50.0
 text = "State: "
 script = ExtResource("11_xtov4")
 state_machine = NodePath("../CharacterStateMachine")
 
+[node name="Sword" type="Area2D" parent="."]
+monitoring = false
+script = ExtResource("12_q162t")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sword"]
+position = Vector2(26, -24)
+shape = SubResource("RectangleShape2D_y2vb2")
+
 [connection signal="animation_finished" from="AnimationTree" to="CharacterStateMachine/Landing" method="_on_animation_tree_animation_finished"]
 [connection signal="animation_finished" from="AnimationTree" to="CharacterStateMachine/Attack" method="_on_animation_tree_animation_finished"]
+[connection signal="body_shape_entered" from="Sword" to="Sword" method="_on_body_shape_entered"]
