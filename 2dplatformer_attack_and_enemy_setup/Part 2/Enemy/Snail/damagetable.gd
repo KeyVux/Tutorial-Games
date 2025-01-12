@@ -1,7 +1,7 @@
 class_name Damagetable
 extends Node
 
-signal onHit(node: Node, damageTaken: float)
+signal onHit(node: Node, damageTaken: float, knockBackDirection: Vector2)
 
 
 @export var deadAnimationName: String = "dead"
@@ -12,10 +12,10 @@ signal onHit(node: Node, damageTaken: float)
 		SignalBus.emit_signal("onHealthChange", get_parent(), value - Health)
 		Health = value
 
-func hit(damage: float):
+func hit(damage: float, knockBackDirection: Vector2):
 	Health -= damage
 	
-	emit_signal("onHit",get_parent(), damage)
+	emit_signal("onHit",get_parent(), damage, knockBackDirection)
 	
 
 

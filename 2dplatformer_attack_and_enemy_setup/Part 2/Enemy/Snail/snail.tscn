@@ -194,10 +194,11 @@ states/walk/node = SubResource("AnimationNodeAnimation_7a7oy")
 states/walk/position = Vector2(407, 100)
 transitions = ["Start", "walk", SubResource("AnimationNodeStateMachineTransition_ggjbb"), "walk", "dead", SubResource("AnimationNodeStateMachineTransition_5rur7")]
 
-[node name="Snail" type="CharacterBody2D"]
+[node name="Snail" type="CharacterBody2D" node_paths=PackedStringArray("hitState")]
 position = Vector2(0, -16)
 collision_layer = 4
 script = ExtResource("1_s8k6e")
+hitState = NodePath("CharacterStateMachine/Hit")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_yffqw")
