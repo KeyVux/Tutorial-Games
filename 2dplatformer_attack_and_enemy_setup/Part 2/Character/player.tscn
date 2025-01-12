@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://xxaoff7gwbrm"]
+[gd_scene load_steps=42 format=3 uid="uid://xxaoff7gwbrm"]
 
 [ext_resource type="Script" path="res://Character/player.gd" id="1_flj5s"]
 [ext_resource type="Texture2D" uid="uid://cf5vr3rdkcdr0" path="res://Art/Legacy-Fantasy - High Forest 2.3/Character/Idle/Idle-Sheet.png" id="1_uohqy"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://Character/GroundState.gd" id="8_yi76h"]
 [ext_resource type="Script" path="res://Character/AirState.gd" id="9_sg48e"]
 [ext_resource type="Script" path="res://Character/LandingState.gd" id="10_e7jjg"]
+[ext_resource type="Script" path="res://Character/attack.gd" id="10_tx2hu"]
 [ext_resource type="Script" path="res://Character/StateDebugLabel.gd" id="11_xtov4"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ry2ya"]
@@ -450,10 +451,11 @@ character = NodePath("..")
 animation_tree = NodePath("../AnimationTree")
 current_state = NodePath("Ground")
 
-[node name="Ground" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("air_state")]
+[node name="Ground" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("air_state", "attackState")]
 script = ExtResource("8_yi76h")
 air_state = NodePath("../Air")
 jump_animation = "jump_start"
+attackState = NodePath("../Attack")
 
 [node name="Air" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("landing_state")]
 script = ExtResource("9_sg48e")
@@ -464,6 +466,9 @@ landing_animation = "jump_end"
 script = ExtResource("10_e7jjg")
 landing_animation_name = "jump_end"
 ground_state = NodePath("../Ground")
+
+[node name="Attack" type="Node" parent="CharacterStateMachine"]
+script = ExtResource("10_tx2hu")
 can_move = false
 
 [node name="StateDebugLabel" type="Label" parent="." node_paths=PackedStringArray("state_machine")]
