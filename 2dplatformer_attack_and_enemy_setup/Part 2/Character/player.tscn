@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://xxaoff7gwbrm"]
+[gd_scene load_steps=41 format=3 uid="uid://xxaoff7gwbrm"]
 
 [ext_resource type="Script" path="res://Character/player.gd" id="1_flj5s"]
 [ext_resource type="Texture2D" uid="uid://cf5vr3rdkcdr0" path="res://Art/Legacy-Fantasy - High Forest 2.3/Character/Idle/Idle-Sheet.png" id="1_uohqy"]
@@ -367,6 +367,12 @@ blend_point_2/node = SubResource("AnimationNodeAnimation_7r4he")
 blend_point_2/pos = -1.0
 blend_mode = 1
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_t1ihx"]
+animation = &"attack1"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_d1f4v"]
+animation = &"attack2"
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1hyex"]
 animation = &"double_jump"
 
@@ -391,16 +397,28 @@ advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8aae2"]
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_e6vjm"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_p2eqk"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_flj17"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_lvxwh"]
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_haosr"]
 states/Move/node = SubResource("AnimationNodeBlendSpace1D_bjy5n")
 states/Move/position = Vector2(392, 100)
+states/attack1/node = SubResource("AnimationNodeAnimation_t1ihx")
+states/attack1/position = Vector2(392, 205)
+states/attack2/node = SubResource("AnimationNodeAnimation_d1f4v")
+states/attack2/position = Vector2(596, 205)
 states/double_jump/node = SubResource("AnimationNodeAnimation_1hyex")
 states/double_jump/position = Vector2(596, -6)
 states/jump_end/node = SubResource("AnimationNodeAnimation_n3amr")
 states/jump_end/position = Vector2(596, 100)
 states/jump_start/node = SubResource("AnimationNodeAnimation_lg01u")
 states/jump_start/position = Vector2(392, -6)
-transitions = ["Start", "Move", SubResource("AnimationNodeStateMachineTransition_i4ph4"), "Move", "jump_start", SubResource("AnimationNodeStateMachineTransition_2puwh"), "jump_start", "jump_end", SubResource("AnimationNodeStateMachineTransition_50dqq"), "jump_end", "Move", SubResource("AnimationNodeStateMachineTransition_3ny4h"), "jump_start", "double_jump", SubResource("AnimationNodeStateMachineTransition_kd0lq"), "double_jump", "jump_end", SubResource("AnimationNodeStateMachineTransition_8aae2")]
+transitions = ["Start", "Move", SubResource("AnimationNodeStateMachineTransition_i4ph4"), "Move", "jump_start", SubResource("AnimationNodeStateMachineTransition_2puwh"), "jump_start", "jump_end", SubResource("AnimationNodeStateMachineTransition_50dqq"), "jump_end", "Move", SubResource("AnimationNodeStateMachineTransition_3ny4h"), "jump_start", "double_jump", SubResource("AnimationNodeStateMachineTransition_kd0lq"), "double_jump", "jump_end", SubResource("AnimationNodeStateMachineTransition_8aae2"), "Move", "attack1", SubResource("AnimationNodeStateMachineTransition_e6vjm"), "attack1", "attack2", SubResource("AnimationNodeStateMachineTransition_p2eqk"), "attack2", "Move", SubResource("AnimationNodeStateMachineTransition_flj17"), "attack1", "Move", SubResource("AnimationNodeStateMachineTransition_lvxwh")]
 graph_offset = Vector2(8, -33)
 
 [node name="Player" type="CharacterBody2D"]
