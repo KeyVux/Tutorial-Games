@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://cfyb4c3eo1fvr"]
+
+[ext_resource type="Script" path="res://UI/heal_change_label.gd" id="1_rx0bj"]
+
+[node name="HealChangeLabel" type="Label"]
+offset_right = 40.0
+offset_bottom = 40.0
+text = "1000
+"
+script = ExtResource("1_rx0bj")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.4
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

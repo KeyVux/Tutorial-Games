@@ -1,10 +1,25 @@
 class_name Damagetable
 extends Node
 
-@export var health: float = 20.0
+signal onHit(node: Node, damageTaken: float)
+
+
+@export var deadAnimationName: String = "dead"
+@export var Health: float = 20.0:
+	get:
+		return Health
+	set(value):
+		SignalBus.emit_signal("onHealthChange", get_parent(), value - Health)
+		Health = value
 
 func hit(damage: float):
-	health -= damage
+	Health -= damage
 	
-	if health <= 0:
+	emit_signal("onHit",get_parent(), damage)
+	
+
+
+func _on_animation_tree_animation_finished(anim_name: StringName) -> void:
+	if anim_name == deadAnimationName:
 		get_parent().queue_free()
+		
