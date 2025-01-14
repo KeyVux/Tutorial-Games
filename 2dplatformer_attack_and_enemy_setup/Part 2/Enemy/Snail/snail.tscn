@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dcfgf8467pyvj"]
+[gd_scene load_steps=20 format=3 uid="uid://dcfgf8467pyvj"]
 
 [ext_resource type="Script" path="res://Enemy/Snail/snail.gd" id="1_s8k6e"]
 [ext_resource type="Texture2D" uid="uid://dpii7hugyoc76" path="res://Art/Legacy-Fantasy - High Forest 2.3/Mob/Snail/walk-Sheet.png" id="1_yffqw"]
@@ -6,7 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://cxij3cdd4xf4t" path="res://Art/Legacy-Fantasy - High Forest 2.3/Mob/Snail/Dead-Sheet.png" id="2_bnaq8"]
 [ext_resource type="Script" path="res://Character/CharacterStateMachine.gd" id="4_qtsnj"]
 [ext_resource type="Script" path="res://Character/State.gd" id="5_h0gps"]
+[ext_resource type="Script" path="res://Enemy/Snail/walk.gd" id="6_bng4q"]
 [ext_resource type="Script" path="res://Enemy/Snail/hit_state.gd" id="6_p6lni"]
+[ext_resource type="Script" path="res://Character/StateDebugLabel.gd" id="8_m4ra1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hsva0"]
 size = Vector2(25.5, 26)
@@ -226,8 +228,9 @@ character = NodePath("..")
 animation_tree = NodePath("../AnimationTree")
 current_state = NodePath("Walk")
 
-[node name="Walk" type="Node" parent="CharacterStateMachine"]
-script = ExtResource("5_h0gps")
+[node name="Walk" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("hitState")]
+script = ExtResource("6_bng4q")
+hitState = NodePath("../Hit")
 
 [node name="Dead" type="Node" parent="CharacterStateMachine"]
 script = ExtResource("5_h0gps")
@@ -240,8 +243,31 @@ deadState = NodePath("../Dead")
 returnState = NodePath("../Walk")
 
 [node name="Timer" type="Timer" parent="CharacterStateMachine/Hit"]
-wait_time = 0.25
 one_shot = true
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_top = -29.0
+offset_right = 40.0
+offset_bottom = 11.0
+
+[node name="Button" type="Button" parent="Control"]
+layout_mode = 0
+offset_top = -23.0
+offset_right = 38.0
+offset_bottom = 8.0
+text = "Hit"
+
+[node name="StateDebugLabel" type="Label" parent="Control" node_paths=PackedStringArray("state_machine")]
+offset_left = -64.0
+offset_top = -76.0
+offset_right = 35.0
+offset_bottom = -50.0
+text = "State: "
+script = ExtResource("8_m4ra1")
+state_machine = NodePath("../../CharacterStateMachine")
 
 [connection signal="animation_finished" from="AnimationTree" to="Damagetable" method="_on_animation_tree_animation_finished"]
 [connection signal="timeout" from="CharacterStateMachine/Hit/Timer" to="CharacterStateMachine/Hit" method="_on_timer_timeout"]
+[connection signal="pressed" from="Control/Button" to="." method="_on_button_pressed"]

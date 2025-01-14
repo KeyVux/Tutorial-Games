@@ -1,0 +1,266 @@
+[gd_scene load_steps=27 format=3 uid="uid://dlw4wrhv4h2xb"]
+
+[ext_resource type="Script" path="res://Player/player.gd" id="2_jd22p"]
+[ext_resource type="Texture2D" uid="uid://pesmjp64e67g" path="res://Level/console/background.png" id="3_5ywdi"]
+[ext_resource type="Texture2D" uid="uid://ds7d006ukmwcv" path="res://Level/console/silver frame.png" id="4_6mimj"]
+[ext_resource type="Texture2D" uid="uid://bmyq45rm6hp0u" path="res://Player/A Boring Fly.png" id="4_ok8fa"]
+[ext_resource type="Texture2D" uid="uid://cfxskajgbwt3x" path="res://Player/vintbackground.png" id="4_uhl1i"]
+[ext_resource type="Texture2D" uid="uid://bx6mrhhgxmkqh" path="res://Level/console/button.png" id="5_g7hay"]
+[ext_resource type="Texture2D" uid="uid://dd6w2ddjh0qao" path="res://Level/console/blueconsole.png" id="5_xrauj"]
+[ext_resource type="FontFile" uid="uid://ccvsiy3jjyfpm" path="res://Level/console/PixelOperator8.ttf" id="8_dsqqi"]
+
+[sub_resource type="Curve2D" id="Curve2D_rgtnv"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -242, -217, 0, 0, 0, 0, 238, -222, 0, 0, 0, 0, 242, 227, 0, 0, 0, 0, -242, 230, 0, 0, 0, 0, -244, -221)
+}
+point_count = 5
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ktk46"]
+size = Vector2(525.301, 478.335)
+
+[sub_resource type="Curve2D" id="Curve2D_qewbe"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -199, -191, 0, 0, 0, 0, 195, -191, 0, 0, 0, 0, 196, 190, 0, 0, 0, 0, -200, 192, 0, 0, 0, 0, -201, -190)
+}
+point_count = 5
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mpuep"]
+size = Vector2(447.771, 414.613)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vo2kt"]
+atlas = ExtResource("5_g7hay")
+region = Rect2(0, 0, 133, 137)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_twc5p"]
+atlas = ExtResource("5_g7hay")
+region = Rect2(133, 0, 133, 137)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ou7wj"]
+atlas = ExtResource("5_g7hay")
+region = Rect2(266, 0, 133, 137)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yfc84"]
+atlas = ExtResource("5_g7hay")
+region = Rect2(399, 0, 133, 137)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7w7du"]
+atlas = ExtResource("5_g7hay")
+region = Rect2(532, 0, 133, 137)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x8r4o"]
+atlas = ExtResource("5_g7hay")
+region = Rect2(665, 0, 133, 137)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e4p3l"]
+atlas = ExtResource("5_g7hay")
+region = Rect2(798, 0, 133, 137)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kx0fp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vo2kt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_twc5p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ou7wj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yfc84")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7w7du")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x8r4o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e4p3l")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ds8mq"]
+atlas = ExtResource("4_ok8fa")
+region = Rect2(0, 0, 28, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s5vpt"]
+atlas = ExtResource("4_ok8fa")
+region = Rect2(28, 0, 28, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_40mmk"]
+atlas = ExtResource("4_ok8fa")
+region = Rect2(56, 0, 28, 28)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rw2oj"]
+atlas = ExtResource("4_ok8fa")
+region = Rect2(84, 0, 28, 28)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_24l5p"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ds8mq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s5vpt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_40mmk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rw2oj")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_l37b0"]
+radius = 6.08276
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Node2DPlayer" type="CharacterBody2D" parent="."]
+position = Vector2(-2, -266)
+collision_mask = 7
+script = ExtResource("2_jd22p")
+
+[node name="Parallax2D" type="Parallax2D" parent="Node2DPlayer"]
+
+[node name="Background" type="Sprite2D" parent="Node2DPlayer/Parallax2D"]
+texture_repeat = 2
+texture = ExtResource("3_5ywdi")
+region_enabled = true
+region_rect = Rect2(0, 0, 800, 600)
+
+[node name="Area2DEnemyZone" type="Area2D" parent="Node2DPlayer"]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CoinPath2D" type="Path2D" parent="Node2DPlayer/Area2DEnemyZone"]
+curve = SubResource("Curve2D_rgtnv")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Node2DPlayer/Area2DEnemyZone/CoinPath2D"]
+position = Vector2(-242, -217)
+rotation = -0.0104163
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2DPlayer/Area2DEnemyZone"]
+shape = SubResource("RectangleShape2D_ktk46")
+debug_color = Color(0.843958, 0.379541, 3.85046e-07, 0.42)
+
+[node name="Area2DCoinZone" type="Area2D" parent="Node2DPlayer"]
+collision_layer = 2
+
+[node name="CoinPath2D" type="Path2D" parent="Node2DPlayer/Area2DCoinZone"]
+curve = SubResource("Curve2D_qewbe")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Node2DPlayer/Area2DCoinZone/CoinPath2D"]
+position = Vector2(-199, -191)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2DPlayer/Area2DCoinZone"]
+shape = SubResource("RectangleShape2D_mpuep")
+debug_color = Color(0.0460571, 0.552141, 0.911252, 0.42)
+
+[node name="console" type="Node2D" parent="Node2DPlayer"]
+z_index = 1
+position = Vector2(-1, -1)
+
+[node name="SilverFrame" type="Sprite2D" parent="Node2DPlayer/console"]
+z_index = 31
+position = Vector2(0, 3)
+texture = ExtResource("4_6mimj")
+
+[node name="Blueconsole" type="Sprite2D" parent="Node2DPlayer/console"]
+z_index = 1
+position = Vector2(0, 181)
+scale = Vector2(1.02222, 1.00314)
+texture = ExtResource("5_xrauj")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Node2DPlayer/console"]
+z_index = 1
+position = Vector2(-64, 338)
+sprite_frames = SubResource("SpriteFrames_kx0fp")
+autoplay = "default"
+
+[node name="sprite" type="Node2D" parent="Node2DPlayer"]
+
+[node name="Player" type="AnimatedSprite2D" parent="Node2DPlayer/sprite"]
+sprite_frames = SubResource("SpriteFrames_24l5p")
+autoplay = "default"
+frame_progress = 0.331519
+
+[node name="Vintage" type="Sprite2D" parent="Node2DPlayer/sprite"]
+position = Vector2(-0.499994, 1.50001)
+scale = Vector2(2.21389, 1.68436)
+texture = ExtResource("4_uhl1i")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node2DPlayer"]
+position = Vector2(0, -3)
+shape = SubResource("CircleShape2D_l37b0")
+
+[node name="Label" type="Label" parent="Node2DPlayer"]
+z_index = 10
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -35.0
+offset_top = -102.0
+offset_right = 41.0
+offset_bottom = -79.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.0627451, 1, 0.0117647, 1)
+theme_override_fonts/font = ExtResource("8_dsqqi")
+text = "SCORE: 0"
+
+[node name="Control" type="Control" parent="Node2DPlayer"]
+visible = false
+z_index = 10
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -60.5
+offset_top = -27.0
+offset_right = 60.5
+offset_bottom = 27.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button" type="Button" parent="Node2DPlayer/Control"]
+layout_mode = 0
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 117.0
+offset_bottom = 48.0
+size_flags_horizontal = 4
+
+[node name="Label2" type="Label" parent="Node2DPlayer/Control/Button"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 2.0
+offset_right = 109.0
+offset_bottom = 51.0
+text = "SCORE: 0
+Restart"
+horizontal_alignment = 1
+
+[node name="Camera2D" type="Camera2D" parent="Node2DPlayer"]
+position = Vector2(-1, 183)
+zoom = Vector2(1.9, 1.9)
+
+[node name="Timer" type="Timer" parent="."]
+process_callback = 0
+wait_time = 4.0
+autostart = true
+
+[connection signal="body_exited" from="Node2DPlayer/Area2DEnemyZone" to="Node2DPlayer" method="_on_area_2d_enemy_zone_body_exited"]
+[connection signal="area_exited" from="Node2DPlayer/Area2DCoinZone" to="Node2DPlayer" method="_on_area_2d_coin_zone_area_exited"]
+[connection signal="button_down" from="Node2DPlayer/Control/Button" to="Node2DPlayer" method="_on_button_button_down"]
+[connection signal="timeout" from="Timer" to="Node2DPlayer" method="_on_timer_timeout"]

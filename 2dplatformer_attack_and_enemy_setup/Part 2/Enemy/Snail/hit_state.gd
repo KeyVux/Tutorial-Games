@@ -1,6 +1,7 @@
 class_name HitState
 extends State
 @onready var timer: Timer = $Timer
+@onready var character_state_machine: CharacterStateMachine = $".."
 
 @export var damagetable: Damagetable 
 @export var deadState: State 
@@ -8,24 +9,34 @@ extends State
 @export var knockback_speed: float = 100.0
 @export var returnState: State
 
+var knockBackDirection: Vector2
+
 func _ready():
 	damagetable.connect("onHit", onDamagetableHit)
 
 func on_enter(): 
-	
 	timer.start()
 	
-func onDamagetableHit(node: Node, damageAmount: float,knockBackDirection: Vector2):
-	if damagetable.Health > 0:
+func state_process(delta):
+	if not character.is_on_floor():
+		character.velocity += character.get_gravity() * delta
 		
+	character.velocity.x = move_toward(character.velocity.x, 0, 2)
+	character.move_and_slide()
+	
+func onDamagetableHit(node: Node, damageAmount: float, knockBackDirection: Vector2):
+	if damagetable.Health > 0:
 		character.velocity = knockback_speed * knockBackDirection
-		emit_signal("interruptState", self)
+		character_state_machine.switch_states(self)
+		
+		print("onDamagetableHit() velocity", character.velocity)
 	else:
-		emit_signal("interruptState", deadState)
+		character_state_machine.switch_states(deadState)
 		playback.travel(deadAnimationNode)
 		
-func onExit():
-	character.velocity = Vector2.ZERO
+func on_exit():
+	#character.velocity = Vector2.ZERO
+	pass
 
 
 func _on_timer_timeout() -> void:
